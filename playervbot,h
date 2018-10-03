@@ -1,0 +1,31 @@
+#ifndef PLAYERVBOT_H
+#define PLAYERVBOT_H
+
+#include "boolean.h"
+
+#define BrsMax 25
+#define KolMax 10
+
+
+typedef struct { char m[10];
+} Move;
+
+
+typedef struct { Move Mem[BrsMax+1][KolMax+1];
+                 int row;
+                 int col;
+} MATRIKS;
+
+#define Row(M) (M).row
+#define Col(M) (M).col
+#define Elmt(M,i,j) (M).Mem[(i)][(j)]
+
+MATRIKS TextToState(FILE *fp);
+boolean CheckWin(char x[10]);
+boolean CheckDraw(char x[10]);
+void Menu();
+void StateTransition(MATRIKS state, Move PrevState, Move *NextState, int i);
+void DisplayState(char x[10]);
+boolean CheckSpot(Move x, Move y);
+
+#endif
